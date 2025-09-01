@@ -1,0 +1,39 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Steel Gas Stove",
+      "price": "25",
+      "image": "https://files.catbox.moe/jcujvc.png",
+      "description": "Durable steel gas stove with high efficiency burners. Perfect for home cooking with easy-to-clean surface."
+    },
+    {
+      "id": 2,
+      "name": "CADAC Gas Stove with pipe",
+      "price": "23",
+      "image": "https://files.catbox.moe/4ge45b.png",
+      "description": "Portable CADAC gas stove with included pipe. Ideal for outdoor activities and camping."
+    },
+    {
+      "id": 3,
+      "name": "Afrox Gas Stove",
+      "price": "20",
+      "image": "https://files.catbox.moe/mf1784.jpg",
+      "description": "Reliable Afrox gas stove with safety features. Trusted brand for household cooking needs."
+    },
+    {
+      "id": 4,
+      "name": "9kg Gas Tank Empty",
+      "price": "31.50",
+      "image": "https://files.catbox.moe/irszqf.png",
+      "description": "Empty 9kg gas tank, ready for refill. Durable construction with safety valve."
+    },
+    {
+      "id": 5,
+      "name": "11kg Gas Tank Empty",
+      "price": "42",
+      "image": "https://files.catbox.moe/d1xv59.jpg",
+      "description": "Empty 11kg gas tank for larger households. High-quality tank with long service life."
+    }
+  ]
+}
