@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>69LPGGas</title>
+  <link rel="icon" href="https://files.catbox.moe/l5a13b.png" />
+  <link rel="stylesheet" href="style.css" />
+  <meta name="theme-color" content="#0ea5e9" />
+</head>
+<body>
+  <!-- Global animated background -->
+  <div class="bg-wrap">
+    <div class="bg-img"></div>
+    <div class="bg-fade"></div>
+  </div>
+
+  <!-- Header / Taskbar -->
+  <header class="topbar">
+    <div class="brand">
+      <img src="https://files.catbox.moe/l5a13b.png" alt="69LPGGas logo" />
+      <span>69LPGGas</span>
+    </div>
+
+    <nav class="nav">
+      <button class="nav-link" data-screen="home">Home</button>
+      <button class="nav-link" data-screen="prices">Prices</button>
+      <button class="nav-link" data-screen="products">Products</button>
+    </nav>
+
+    <div class="actions">
+      <button id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+        <span class="icon-sun">☀️</span>
+        <span class="icon-moon">🌙</span>
+      </button>
+
+      <!-- Hamburger -->
+      <button id="hamburger" aria-label="Open menu" title="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Slide-out menu -->
+  <aside id="drawer">
+    <button id="drawerClose" aria-label="Close menu">✕</button>
+    <div class="drawer-content">
+      <h3>Logged In As Guest</h3>
+      <p class="muted">Welcome! Enjoy the best LPG prices and products.</p>
+
+      <section class="dev-card">
+        <h4>Developer Info</h4>
+        <p>Hi 👋 I'm a Zimbabwean Developer. Feel free to reach out to my Business WhatsApp for any technical issues or if you’d like me to start working on your project.</p>
+        <div class="btn-row">
+          <a class="btn primary" href="https://wa.me/27642701608" target="_blank" rel="noopener">Business WhatsApp</a>
+          <a class="btn outline" href="https://ko-fi.com/16ixtxxn" target="_blank" rel="noopener">Buy me coffee ☕️</a>
+        </div>
+      </section>
+
+      <footer class="drawer-footer">
+        <div class="footer-grid">
+          <a href="mailto:69LPGGas@gmail.com" class="foot-item">📧 69LPGGas@gmail.com</a>
+          <div class="foot-item">📍 165 Shongamiti, Ngundu, Masvingo, Zimbabwe</div>
+        </div>
+        <p class="tiny">© <span id="year"></span> 69LPGGas. All rights reserved.</p>
+      </footer>
+    </div>
+  </aside>
+
+  <!-- Guest Login Screen -->
+  <main id="screen-login" class="screen visible">
+    <div class="login-card">
+      <img class="avatar" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f464.png" alt="Default user" />
+      <h1>Welcome to 69LPGGas</h1>
+      <p class="slogan">Gas Rinogara</p>
+      <button id="guestLogin" class="btn primary wide">Login as Guest</button>
+    </div>
+  </main>
+
+  <!-- HOME -->
+  <main id="screen-home" class="screen">
+    <section class="hero">
+      <h2>Your trusted LPG partner</h2>
+      <p>Fast refills, quality equipment, and honest pricing. Join our community below.</p>
+      <a class="btn outline" href="https://chat.whatsapp.com/C93bc3e0Eqi0yVdJAkgxM9" target="_blank" rel="noopener">Join our WhatsApp Group</a>
+    </section>
+
+    <section class="safety">
+      <h3>⚠️ Home Safety & Usage Tips</h3>
+      <ul>
+        <li>Always keep cylinders upright and in a well-ventilated place.</li>
+        <li>Check for leaks using soapy water — never with a flame.</li>
+        <li>Turn off the regulator and stove after use.</li>
+        <li>Keep matches and lighters away from children.</li>
+        <li>Do not store cylinders near heat sources or direct sunlight.</li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- PRICES -->
+  <main id="screen-prices" class="screen">
+    <section class="prices-card">
+      <h2>Current Prices</h2>
+      <ul class="price-list">
+        <li><span>$1,7/kg</span> <span class="muted">or</span> <span>R35</span></li>
+        <li class="promo">
+          <span class="tag">🏷 Dira Rizare Promotion</span>
+          <span>3kg for <strong>$5,1</strong> <span class="muted">/</span> R105</span>
+        </li>
+        <li>5kg <strong>$8,5</strong> <span class="muted">/</span> R175</li>
+      </ul>
+
+      <div class="timer-wrap">
+        <h3>Offer ends in</h3>
+        <div id="promoTimer" class="timer">--:--:--:---</div>
+        <p class="tiny muted">Hours : Minutes : Seconds : Milliseconds</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- PRODUCTS -->
+  <main id="screen-products" class="screen">
+    <div class="products-head">
+      <h2>Products</h2>
+      <div class="cart-bar">
+        <button id="cartBtn" class="icon-btn" title="Cart">🛒 <span id="cartCount">0</span></button>
+        <button id="buyNow" class="btn primary">Buy Now</button>
+      </div>
+    </div>
+
+    <section id="productsGrid" class="grid"></section>
+  </main>
+
+  <!-- Floating WhatsApp with neon aura -->
+  <a id="fabWhatsApp" class="fab" href="https://wa.me/263780074647" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    💬
+  </a>
+
+  <!-- Footer (always visible) -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <a href="mailto:69LPGGas@gmail.com" class="foot-item">📧 69LPGGas@gmail.com</a>
+      <div class="foot-item">📍 165 Shongamiti, Ngundu, Masvingo, Zimbabwe</div>
+    </div>
+    <p class="tiny">© <span id="year2"></span> 69LPGGas. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
