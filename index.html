@@ -1,150 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>69LPGGas</title>
-  <link rel="icon" href="https://files.catbox.moe/l5a13b.png" />
-  <link rel="stylesheet" href="style.css" />
-  <meta name="theme-color" content="#0ea5e9" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>69LPGGas - Quality Gas Products</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://files.catbox.moe/l5a13b.png">
 </head>
 <body>
-  <!-- Global animated background -->
-  <div class="bg-wrap">
-    <div class="bg-img"></div>
-    <div class="bg-fade"></div>
-  </div>
-
-  <!-- Header / Taskbar -->
-  <header class="topbar">
-    <div class="brand">
-      <img src="https://files.catbox.moe/l5a13b.png" alt="69LPGGas logo" />
-      <span>69LPGGas</span>
-    </div>
-
-    <nav class="nav">
-      <button class="nav-link" data-screen="home">Home</button>
-      <button class="nav-link" data-screen="prices">Prices</button>
-      <button class="nav-link" data-screen="products">Products</button>
-    </nav>
-
-    <div class="actions">
-      <button id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
-        <span class="icon-sun">☀️</span>
-        <span class="icon-moon">🌙</span>
-      </button>
-
-      <!-- Hamburger -->
-      <button id="hamburger" aria-label="Open menu" title="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </header>
-
-  <!-- Slide-out menu -->
-  <aside id="drawer">
-    <button id="drawerClose" aria-label="Close menu">✕</button>
-    <div class="drawer-content">
-      <h3>Logged In As Guest</h3>
-      <p class="muted">Welcome! Enjoy the best LPG prices and products.</p>
-
-      <section class="dev-card">
-        <h4>Developer Info</h4>
-        <p>Hi 👋 I'm a Zimbabwean Developer. Feel free to reach out to my Business WhatsApp for any technical issues or if you’d like me to start working on your project.</p>
-        <div class="btn-row">
-          <a class="btn primary" href="https://wa.me/27642701608" target="_blank" rel="noopener">Business WhatsApp</a>
-          <a class="btn outline" href="https://ko-fi.com/16ixtxxn" target="_blank" rel="noopener">Buy me coffee ☕️</a>
+    <!-- Login Screen -->
+    <div id="login-screen" class="screen active">
+        <div class="login-container">
+            <img src="https://files.catbox.moe/l5a13b.png" alt="69LPGGas Icon" class="login-icon">
+            <h1>69LPGGas</h1>
+            <p class="slogan">Gas Rinogara</p>
+            <button id="guest-login" class="login-btn">Login As Guest</button>
         </div>
-      </section>
-
-      <footer class="drawer-footer">
-        <div class="footer-grid">
-          <a href="mailto:69LPGGas@gmail.com" class="foot-item">📧 69LPGGas@gmail.com</a>
-          <div class="foot-item">📍 165 Shongamiti, Ngundu, Masvingo, Zimbabwe</div>
-        </div>
-        <p class="tiny">© <span id="year"></span> 69LPGGas. All rights reserved.</p>
-      </footer>
-    </div>
-  </aside>
-
-  <!-- Guest Login Screen -->
-  <main id="screen-login" class="screen visible">
-    <div class="login-card">
-      <img class="avatar" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f464.png" alt="Default user" />
-      <h1>Welcome to 69LPGGas</h1>
-      <p class="slogan">Gas Rinogara</p>
-      <button id="guestLogin" class="btn primary wide">Login as Guest</button>
-    </div>
-  </main>
-
-  <!-- HOME -->
-  <main id="screen-home" class="screen">
-    <section class="hero">
-      <h2>Your trusted LPG partner</h2>
-      <p>Fast refills, quality equipment, and honest pricing. Join our community below.</p>
-      <a class="btn outline" href="https://chat.whatsapp.com/C93bc3e0Eqi0yVdJAkgxM9" target="_blank" rel="noopener">Join our WhatsApp Group</a>
-    </section>
-
-    <section class="safety">
-      <h3>⚠️ Home Safety & Usage Tips</h3>
-      <ul>
-        <li>Always keep cylinders upright and in a well-ventilated place.</li>
-        <li>Check for leaks using soapy water — never with a flame.</li>
-        <li>Turn off the regulator and stove after use.</li>
-        <li>Keep matches and lighters away from children.</li>
-        <li>Do not store cylinders near heat sources or direct sunlight.</li>
-      </ul>
-    </section>
-  </main>
-
-  <!-- PRICES -->
-  <main id="screen-prices" class="screen">
-    <section class="prices-card">
-      <h2>Current Prices</h2>
-      <ul class="price-list">
-        <li><span>$1,7/kg</span> <span class="muted">or</span> <span>R35</span></li>
-        <li class="promo">
-          <span class="tag">🏷 Dira Rizare Promotion</span>
-          <span>3kg for <strong>$5,1</strong> <span class="muted">/</span> R105</span>
-        </li>
-        <li>5kg <strong>$8,5</strong> <span class="muted">/</span> R175</li>
-      </ul>
-
-      <div class="timer-wrap">
-        <h3>Offer ends in</h3>
-        <div id="promoTimer" class="timer">--:--:--:---</div>
-        <p class="tiny muted">Hours : Minutes : Seconds : Milliseconds</p>
-      </div>
-    </section>
-  </main>
-
-  <!-- PRODUCTS -->
-  <main id="screen-products" class="screen">
-    <div class="products-head">
-      <h2>Products</h2>
-      <div class="cart-bar">
-        <button id="cartBtn" class="icon-btn" title="Cart">🛒 <span id="cartCount">0</span></button>
-        <button id="buyNow" class="btn primary">Buy Now</button>
-      </div>
     </div>
 
-    <section id="productsGrid" class="grid"></section>
-  </main>
+    <!-- Main Application (initially hidden) -->
+    <div id="app" class="screen">
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <img src="https://files.catbox.moe/l5a13b.png" alt="Logo">
+                    <span>69LPGGas</span>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active" data-page="home">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-page="prices">PRICES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-page="products">PRODUCTS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-page="cautions">CAUTIONS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-page="developer">DEVELOPER</a>
+                    </li>
+                    <li class="nav-item cart-item">
+                        <div class="cart-container">
+                            <span id="cart-count">0</span>
+                            <img src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="Cart" class="cart-icon">
+                        </div>
+                        <button id="buy-now" class="buy-btn">Buy Now</button>
+                    </li>
+                    <li class="nav-item">
+                        <button id="theme-toggle" class="theme-btn">🌙</button>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
 
-  <!-- Floating WhatsApp with neon aura -->
-  <a id="fabWhatsApp" class="fab" href="https://wa.me/263780074647" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-    💬
-  </a>
+        <!-- Page Content -->
+        <main class="page-container">
+            <!-- Home Page -->
+            <section id="home-page" class="page active">
+                <div class="hero-section">
+                    <h2>Welcome to 69LPGGas</h2>
+                    <p>Your trusted partner for quality gas products and services</p>
+                    <a href="https://chat.whatsapp.com/C93bc3e0Eqi0yVdJAkgxM9" class="whatsapp-group-btn" target="_blank">
+                        Join our WhatsApp Group
+                    </a>
+                </div>
+                <div class="floating-whatsapp">
+                    <a href="https://wa.me/263780074647" target="_blank" class="whatsapp-float">
+                        <img src="https://cdn-icons-png.flaticon.com/512/220/220236.png" alt="WhatsApp">
+                    </a>
+                </div>
+            </section>
 
-  <!-- Footer (always visible) -->
-  <footer class="site-footer">
-    <div class="footer-grid">
-      <a href="mailto:69LPGGas@gmail.com" class="foot-item">📧 69LPGGas@gmail.com</a>
-      <div class="foot-item">📍 165 Shongamiti, Ngundu, Masvingo, Zimbabwe</div>
+            <!-- Prices Page -->
+            <section id="prices-page" class="page">
+                <h2>Our Current Prices</h2>
+                <div class="prices-container">
+                    <div class="price-card">
+                        <h3>Standard Gas</h3>
+                        <p class="price">$1.7/kg or R35</p>
+                    </div>
+                    <div class="price-card promotion">
+                        <div class="promo-label">🏷 Promotion</div>
+                        <h3>Dira Rizare Promotion</h3>
+                        <p class="price">3kg for R105</p>
+                        <div class="countdown">
+                            <h4>Offer Ends In:</h4>
+                            <div id="countdown-timer">
+                                <div><span id="days">00</span><span>Days</span></div>
+                                <div><span id="hours">00</span><span>Hours</span></div>
+                                <div><span id="minutes">00</span><span>Minutes</span></div>
+                                <div><span id="seconds">00</span><span>Seconds</span></div>
+                                <div><span id="milliseconds">000</span><span>Milliseconds</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="price-card">
+                        <h3>5kg Gas</h3>
+                        <p class="price">$8.5 or R175</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Products Page -->
+            <section id="products-page" class="page">
+                <h2>Our Products</h2>
+                <div class="products-container" id="products-container">
+                    <!-- Products will be loaded from JSON -->
+                </div>
+            </section>
+
+            <!-- Cautions Page -->
+            <section id="cautions-page" class="page">
+                <h2>Safety Information</h2>
+                <div class="cautions-container">
+                    <div class="caution-card">
+                        <h3>⚠️ Important Safety Tips</h3>
+                        <ul>
+                            <li>Always store gas cylinders in a well-ventilated area</li>
+                            <li>Check for leaks regularly using soapy water solution</li>
+                            <li>Keep gas cylinders away from heat sources and flames</li>
+                            <li>Ensure all connections are tight before use</li>
+                            <li>Never use damaged or rusty cylinders</li>
+                            <li>Turn off the gas valve when not in use</li>
+                            <li>Keep children away from gas equipment</li>
+                            <li>In case of leak, turn off supply and ventilate area immediately</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Developer Page -->
+            <section id="developer-page" class="page">
+                <h2>About the Developer</h2>
+                <div class="developer-container">
+                    <div class="developer-card">
+                        <p>Hi 👋 I'm a Zimbabwean Developer, Feel free to reach out to my Business WhatsApp for any Technical issues and also if you would like me to start working on your project for you.</p>
+                        
+                        <div class="developer-buttons">
+                            <a href="https://wa.me/27642701608" class="dev-btn" target="_blank">
+                                Contact on WhatsApp
+                            </a>
+                            <a href="https://ko-fi.com/16ixtxxn" class="dev-btn coffee-btn" target="_blank">
+                                Buy me Coffee ☕️
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Contact Us</h3>
+                        <p><img src="https://cdn-icons-png.flaticon.com/512/561/567127.png" alt="Email"> 69LPGGas@gmail.com</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Address</h3>
+                        <p>165 Shongamiti, Ngundu, Masvingo, Zimbabwe</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <a href="#" data-page="home">Home</a>
+                        <a href="#" data-page="prices">Prices</a>
+                        <a href="#" data-page="products">Products</a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 69LPGGas. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
     </div>
-    <p class="tiny">© <span id="year2"></span> 69LPGGas. All rights reserved.</p>
-  </footer>
 
-  <script src="script.js" defer></script>
+    <script src="script.js"></script>
 </body>
-</html>
+                          </html>
