@@ -1,195 +1,211 @@
-/* ====== Utilities ====== */
-const $ = (sel, root = document) => root.querySelector(sel);
-const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
-
-const SCREENS = {
-  login: $("#screen-login"),
-  home: $("#screen-home"),
-  prices: $("#screen-prices"),
-  products: $("#screen-products"),
-};
-
-const CART_KEY = "69lpg_cart";
-const THEME_KEY = "69lpg_theme";
-const PROMO_END_KEY = "69lpg_promo_end";
-
-/* ====== Theme ====== */
-function applyStoredTheme() {
-  const saved = localStorage.getItem(THEME_KEY);
-  if (saved === "light") document.body.classList.add("light");
-  else if (saved === "dark") document.body.classList.remove("light");
-  // default is dark (no .light). Toggle control reflects via CSS.
-}
-function toggleTheme() {
-  const isLight = document.body.classList.toggle("light");
-  localStorage.setItem(THEME_KEY, isLight ? "light" : "dark");
-}
-
-/* ====== Navigation / Screens ====== */
-function showScreen(name) {
-  Object.entries(SCREENS).forEach(([k, el]) => el.classList.toggle("visible", k === name));
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
-function bindNav() {
-  $$(".nav .nav-link").forEach(btn => {
-    btn.addEventListener("click", () => showScreen(btn.dataset.screen));
-  });
-}
-
-/* ====== Drawer ====== */
-function bindDrawer() {
-  $("#hamburger").addEventListener("click", () => $("#drawer").classList.add("open"));
-  $("#drawerClose").addEventListener("click", () => $("#drawer").classList.remove("open"));
-}
-
-/* ====== Floating WhatsApp Neon reacts to scroll ====== */
-function bindNeonScroll() {
-  const fab = $("#fabWhatsApp");
-  const max = 1.0;
-  window.addEventListener("scroll", () => {
-    const p = Math.min(1, (window.scrollY % 600) / 600);
-    fab.style.setProperty("--halo", (p * max).toFixed(3));
-  }, { passive: true });
-}
-
-/* ====== Login ====== */
-function bindLogin() {
-  $("#guestLogin").addEventListener("click", () => {
-    showScreen("home");
-  });
-}
-
-/* ====== Footer year ====== */
-function setYear() {
-  const y = new Date().getFullYear();
-  $("#year").textContent = y;
-  $("#year2").textContent = y;
-}
-
-/* ====== Promo Timer (10 days) ====== */
-let promoTimerInterval;
-function initPromoTimer() {
-  let end = localStorage.getItem(PROMO_END_KEY);
-  if (!end) {
-    // 10 days from first view
-    end = Date.now() + 10 * 24 * 60 * 60 * 1000;
-    localStorage.setItem(PROMO_END_KEY, String(end));
-  } else {
-    end = Number(end);
-  }
-
-  const timerEl = $("#promoTimer");
-  if (promoTimerInterval) clearInterval(promoTimerInterval);
-
-  promoTimerInterval = setInterval(() => {
-    const now = Date.now();
-    let ms = end - now;
-    if (ms <= 0) {
-      timerEl.textContent = "00:00:00:000";
-      clearInterval(promoTimerInterval);
-      return;
+// script.js
+document.addEventListener('DOMContentLoaded', function() {
+    // Elements
+    const loginScreen = document.getElementById('login-screen');
+    const appScreen = document.getElementById('app');
+    const guestLoginBtn = document.getElementById('guest-login');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const pages = document.querySelectorAll('.page');
+    const themeToggle = document.getElementById('theme-toggle');
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    const cartCount = document.getElementById('cart-count');
+    const buyNowBtn = document.getElementById('buy-now');
+    const productsContainer = document.getElementById('products-container');
+    
+    // Cart array to store products
+    let cart = [];
+    
+    // Initialize theme from localStorage or default to light
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+    
+    // Guest login functionality
+    guestLoginBtn.addEventListener('click', function() {
+        loginScreen.classList.remove('active');
+        appScreen.classList.add('active');
+    });
+    
+    // Navigation functionality
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const pageId = this.getAttribute('data-page');
+            
+            // Update active nav link
+            navLinks.forEach(navLink => navLink.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Show the corresponding page
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(`${pageId}-page`).classList.add('active');
+            
+            // Close mobile menu if open
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+    
+    // Theme toggle functionality
+    themeToggle.addEventListener('click', function() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+    });
+    
+    // Mobile menu toggle
+    hamburger.addEventListener('click', function() {
+        this.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+    
+    // Initialize countdown timer
+    initializeCountdown();
+    
+    // Load products from JSON
+    loadProducts();
+    
+    // Buy Now button functionality
+    buyNowBtn.addEventListener('click', function() {
+        if (cart.length === 0) {
+            alert('Your cart is empty!');
+            return;
+        }
+        
+        let message = "I'd like to buy these items:\n";
+        let total = 0;
+        
+        cart.forEach(item => {
+            message += `- ${item.name} ($${item.price})\n`;
+            total += parseFloat(item.price);
+        });
+        
+        message += `\nTotal: $${total.toFixed(2)}\n\nWhere do I make the payment and pickup?`;
+        
+        const encodedMessage = encodeURIComponent(message);
+        window.open(`https://wa.me/263782404426?text=${encodedMessage}`, '_blank');
+    });
+    
+    // Function to initialize countdown timer
+    function initializeCountdown() {
+        // Set the date we're counting down to (10 days from now)
+        const countDownDate = new Date();
+        countDownDate.setDate(countDownDate.getDate() + 10);
+        
+        // Update the count down every 1 millisecond
+        const countdownFunction = setInterval(function() {
+            // Get today's date and time
+            const now = new Date().getTime();
+            
+            // Find the distance between now and the count down date
+            const distance = countDownDate - now;
+            
+            // Time calculations for days, hours, minutes, seconds and milliseconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            const milliseconds = Math.floor(distance % 1000);
+            
+            // Output the result in elements with id="days", "hours", "minutes", "seconds", "milliseconds"
+            document.getElementById("days").textContent = days.toString().padStart(2, '0');
+            document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+            document.getElementById("milliseconds").textContent = milliseconds.toString().padStart(3, '0');
+            
+            // If the count down is over, write some text 
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("countdown-timer").innerHTML = "EXPIRED";
+            }
+        }, 1);
     }
-    const hours = Math.floor(ms / 3_600_000);
-    ms -= hours * 3_600_000;
-    const mins = Math.floor(ms / 60_000);
-    ms -= mins * 60_000;
-    const secs = Math.floor(ms / 1_000);
-    ms -= secs * 1_000;
-    timerEl.textContent = `${String(hours).padStart(2,"0")}:${String(mins).padStart(2,"0")}:${String(secs).padStart(2,"0")}:${String(ms).padStart(3,"0")}`;
-  }, 33); // ~30fps for smooth ms
-}
-
-/* ====== Products & Cart ====== */
-let PRODUCTS = [];
-function loadCart() {
-  try { return JSON.parse(localStorage.getItem(CART_KEY) || "[]"); }
-  catch { return []; }
-}
-function saveCart(items) {
-  localStorage.setItem(CART_KEY, JSON.stringify(items));
-  updateCartCount();
-}
-function updateCartCount() {
-  const count = loadCart().reduce((a, it) => a + it.qty, 0);
-  $("#cartCount").textContent = count;
-}
-
-function renderProducts() {
-  const grid = $("#productsGrid");
-  grid.innerHTML = "";
-  PRODUCTS.forEach((p, idx) => {
-    const card = document.createElement("article");
-    card.className = "card";
-    card.innerHTML = `
-      <img src="${p.image}" alt="${p.name}" loading="lazy">
-      <h4>${p.name}</h4>
-      <p>${p.desc}</p>
-      <div class="price">$${Number(p.price).toFixed(2)}</div>
-      <div class="card-actions">
-        <button class="btn outline" data-idx="${idx}" data-act="details">Details</button>
-        <button class="btn primary" data-idx="${idx}" data-act="add">Add to cart</button>
-      </div>
-    `;
-    grid.appendChild(card);
-  });
-
-  grid.addEventListener("click", (e) => {
-    const btn = e.target.closest("button");
-    if (!btn) return;
-    const p = PRODUCTS[Number(btn.dataset.idx)];
-    if (btn.dataset.act === "add") {
-      const cart = loadCart();
-      const existing = cart.find(it => it.id === p.id);
-      if (existing) existing.qty += 1;
-      else cart.push({ id: p.id, name: p.name, price: p.price, qty: 1 });
-      saveCart(cart);
-    } else if (btn.dataset.act === "details") {
-      alert(`${p.name}\n\n${p.desc}\n\nPrice: $${Number(p.price).toFixed(2)}`);
+    
+    // Function to load products
+    function loadProducts() {
+        // In a real scenario, we would fetch this from product.json
+        // For this example, we'll use a hardcoded array
+        
+        const products = [
+            {
+                id: 1,
+                name: "Steel Gas Stove",
+                price: "25",
+                image: "https://files.catbox.moe/jcujvc.png",
+                description: "Durable steel gas stove with high efficiency burners. Perfect for home cooking with easy-to-clean surface."
+            },
+            {
+                id: 2,
+                name: "CADAC Gas Stove with pipe",
+                price: "23",
+                image: "https://files.catbox.moe/4ge45b.png",
+                description: "Portable CADAC gas stove with included pipe. Ideal for outdoor activities and camping."
+            },
+            {
+                id: 3,
+                name: "Afrox Gas Stove",
+                price: "20",
+                image: "https://files.catbox.moe/mf1784.jpg",
+                description: "Reliable Afrox gas stove with safety features. Trusted brand for household cooking needs."
+            },
+            {
+                id: 4,
+                name: "9kg Gas Tank Empty",
+                price: "31.50",
+                image: "https://files.catbox.moe/irszqf.png",
+                description: "Empty 9kg gas tank, ready for refill. Durable construction with safety valve."
+            },
+            {
+                id: 5,
+                name: "11kg Gas Tank Empty",
+                price: "42",
+                image: "https://files.catbox.moe/d1xv59.jpg",
+                description: "Empty 11kg gas tank for larger households. High-quality tank with long service life."
+            }
+        ];
+        
+        // Render products
+        products.forEach(product => {
+            const productCard = document.createElement('div');
+            productCard.className = 'product-card';
+            productCard.innerHTML = `
+                <img src="${product.image}" alt="${product.name}" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-title">${product.name}</h3>
+                    <p class="product-price">$${product.price}</p>
+                    <p class="product-description">${product.description}</p>
+                    <button class="add-to-cart" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}">Add to Cart</button>
+                </div>
+            `;
+            
+            productsContainer.appendChild(productCard);
+        });
+        
+        // Add event listeners to Add to Cart buttons
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const id = this.getAttribute('data-id');
+                const name = this.getAttribute('data-name');
+                const price = this.getAttribute('data-price');
+                
+                // Add product to cart
+                cart.push({ id, name, price });
+                
+                // Update cart count
+                cartCount.textContent = cart.length;
+                
+                // Show confirmation
+                this.textContent = 'Added!';
+                setTimeout(() => {
+                    this.textContent = 'Add to Cart';
+                }, 1500);
+            });
+        });
     }
-  }, { once: true }); // set once to avoid multiple bindings; reattached on re-render if needed
-}
-
-function composeWhatsApp() {
-  const cart = loadCart();
-  if (cart.length === 0) {
-    alert("Your cart is empty. Please add items first.");
-    return;
-  }
-  const lines = cart.map((it, i) => `${i+1}. ${it.name} x${it.qty} - $${(it.price * it.qty).toFixed(2)}`);
-  const total = cart.reduce((a, it) => a + it.price * it.qty, 0);
-  const message = `I'd like to buy these items ${lines.join(" | ")} for $amount and total of $${total.toFixed(2)} where do i make the payment and pickup ?`;
-  const url = "https://wa.me/263782404426?text=" + encodeURIComponent(message);
-  window.open(url, "_blank", "noopener");
-}
-
-/* ====== Data fetch ====== */
-async function loadProducts() {
-  try {
-    const res = await fetch("product.json", { cache: "no-store" });
-    if (!res.ok) throw new Error("Failed to load products");
-    PRODUCTS = await res.json();
-    renderProducts();
-  } catch (err) {
-    console.error(err);
-    $("#productsGrid").innerHTML = `<p style="opacity:.8">Unable to load products right now.</p>`;
-  }
-}
-
-/* ====== Init ====== */
-document.addEventListener("DOMContentLoaded", () => {
-  applyStoredTheme();
-  bindNav();
-  bindDrawer();
-  bindNeonScroll();
-  bindLogin();
-  $("#themeToggle").addEventListener("click", toggleTheme);
-  $("#buyNow").addEventListener("click", composeWhatsApp);
-
-  setYear();
-  initPromoTimer();
-  loadProducts();
-  updateCartCount();
-
-  // Start at login screen; after guest login, Home becomes visible
-  showScreen("login");
 });
