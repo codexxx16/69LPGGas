@@ -1,37 +1,37 @@
 [
-    {
-        "id": 1,
-        "name": "Steel Gas Stove",
-        "image": "https://files.catbox.moe/jcujvc.png",
-        "price": "25",
-        "description": "High-quality steel gas stove with durable construction and efficient heat distribution. Perfect for everyday cooking needs with easy-to-clean surfaces. Features adjustable flame control and safety mechanisms. Suitable for both indoor and outdoor use. Built to last with corrosion-resistant materials."
-    },
-    {
-        "id": 2,
-        "name": "CADAC Gas Stove with Pipe",
-        "image": "https://files.catbox.moe/4ge45b.png",
-        "price": "23",
-        "description": "Professional CADAC gas stove complete with high-quality connecting pipe and fittings. Ideal for outdoor cooking, camping, and portable cooking solutions. Features reliable ignition system and wind-resistant burner design. Includes all necessary accessories for immediate use. Trusted brand with excellent performance record."
-    },
-    {
-        "id": 3,
-        "name": "Afrox Gas Stove",
-        "image": "https://files.catbox.moe/mf1784.jpg",
-        "price": "20",
-        "description": "Reliable Afrox gas stove with consistent performance and fuel efficiency. Budget-friendly option without compromising on quality or safety. Easy to operate with simple controls and maintenance. Perfect for small households and occasional use. Backed by Afrox's reputation for quality gas equipment."
-    },
-    {
-        "id": 4,
-        "name": "9kg Gas Tank Empty",
-        "image": "https://files.catbox.moe/irszqf.png",
-        "price": "31.50",
-        "description": "Empty 9kg gas tank ready for filling at any certified gas station. Standard size perfect for small to medium households, providing approximately 3-4 weeks of cooking gas. Manufactured to international safety standards with built-in pressure relief valve. Lightweight and easy to handle. Ideal for apartments and small homes."
-    },
-    {
-        "id": 5,
-        "name": "11kg Gas Tank Empty",
-        "image": "https://files.catbox.moe/d1xv59.jpg",
-        "price": "42",
-        "description": "Empty 11kg gas tank for larger households and extended usage periods. Perfect for families or businesses requiring more cooking capacity. Provides approximately 5-6 weeks of cooking gas when filled. Built with reinforced steel construction and advanced safety features. Suitable for high-demand cooking environments and commercial use."
-    }
+  {
+    "id": "steel-gas-stove",
+    "name": "Steel Gas Stove",
+    "price": 25,
+    "image": "https://files.catbox.moe/jcujvc.png",
+    "desc": "Durable single-burner steel gas stove for everyday cooking. Stable support, easy ignition and low gas consumption."
+  },
+  {
+    "id": "cadac-gas-stove-pipe",
+    "name": "CADAC Gas Stove with Pipe",
+    "price": 23,
+    "image": "https://files.catbox.moe/4ge45b.png",
+    "desc": "Compact CADAC stove including a connection pipe. Reliable flame control and great for indoor or outdoor use."
+  },
+  {
+    "id": "afrox-gas-stove",
+    "name": "Afrox Gas Stove",
+    "price": 20,
+    "image": "https://files.catbox.moe/mf1784.jpg",
+    "desc": "Budget-friendly Afrox burner offering consistent heat output and sturdy construction for daily cooking."
+  },
+  {
+    "id": "empty-tank-9kg",
+    "name": "9kg Gas Tank (Empty)",
+    "price": 31.50,
+    "image": "https://files.catbox.moe/irszqf.png",
+    "desc": "Standard 9kg empty LPG cylinder. Inspect valve and O-ring regularly; refill at certified points."
+  },
+  {
+    "id": "empty-tank-11kg",
+    "name": "11kg Gas Tank (Empty)",
+    "price": 42,
+    "image": "https://files.catbox.moe/d1xv59.jpg",
+    "desc": "Large 11kg empty LPG cylinder for extended use. Store upright in a cool, ventilated area."
+  }
 ]
