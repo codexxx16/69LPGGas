@@ -608,7 +608,7 @@ body::before {
     color: var(--accent-color);
 }
 
-.footer-section img {
+.email-icon {
     width: 16px;
     height: 16px;
     margin-right: 0.5rem;
@@ -664,4 +664,4 @@ body::before {
     .developer-buttons {
         flex-direction: column;
     }
-  }
+    }
