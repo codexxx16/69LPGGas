@@ -3,22 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>69LPGGas - Professional Gas Solutions</title>
+    <title>69LPGGas - Quality Gas Products</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="https://files.catbox.moe/l5a13b.png">
+    <link rel="icon" href="https://files.catbox.moe/l5a13b.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- Login Screen -->
     <div id="login-screen" class="screen active">
         <div class="login-container">
-            <img src="https://files.catbox.moe/l5a13b.png" alt="69LPGGas Icon" class="login-icon">
+            <img src="https://files.catbox.moe/l5a13b.png" alt="69LPGGas Logo" class="login-logo">
+            <div class="user-icon">
+                <i class="fas fa-user-circle"></i>
+            </div>
             <h2 class="slogan">Gas Rinogara</h2>
             <button id="guest-login" class="login-btn">Login As Guest</button>
         </div>
     </div>
 
-    <!-- Main Application (initially hidden) -->
-    <div id="app" class="hidden">
+    <!-- Main Application -->
+    <div id="app" class="screen">
         <!-- Navigation Bar -->
         <nav class="navbar">
             <div class="nav-brand">
@@ -26,42 +30,42 @@
                 <span>69LPGGas</span>
             </div>
             
-            <div class="nav-links">
-                <a href="#" class="nav-link active" data-page="home">HOME</a>
-                <a href="#" class="nav-link" data-page="prices">PRICES</a>
-                <a href="#" class="nav-link" data-page="products">PRODUCTS</a>
-                <a href="#" class="nav-link" data-page="cautions">CAUTIONS</a>
-                <a href="#" class="nav-link" data-page="developer">DEVELOPER</a>
-            </div>
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link active" data-page="home">HOME</a></li>
+                <li><a href="#" class="nav-link" data-page="prices">PRICES</a></li>
+                <li><a href="#" class="nav-link" data-page="products">PRODUCTS</a></li>
+                <li><a href="#" class="nav-link" data-page="cautions">CAUTIONS</a></li>
+            </ul>
             
-            <div class="nav-controls">
+            <div class="nav-actions">
                 <div class="cart-container">
-                    <button id="cart-btn" class="cart-btn">
-                        <span class="cart-icon">🛒</span>
-                        <span id="cart-count" class="cart-count">0</span>
-                    </button>
-                    <button id="buy-now-btn" class="buy-now-btn">Buy Now</button>
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count">0</span>
                 </div>
-                <button id="theme-toggle" class="theme-toggle">🌙</button>
-                <button id="menu-toggle" class="menu-toggle">☰</button>
+                <button id="buy-now" class="buy-btn">Buy Now</button>
+                <button class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+                <button class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </nav>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu hidden">
+        <div id="mobile-menu" class="mobile-menu">
             <div class="menu-header">
-                <span>Logged In As Guest</span>
-                <button id="close-menu">×</button>
+                <p>Logged In As Guest</p>
             </div>
-            <a href="#" class="menu-link active" data-page="home">HOME</a>
-            <a href="#" class="menu-link" data-page="prices">PRICES</a>
-            <a href="#" class="menu-link" data-page="products">PRODUCTS</a>
-            <a href="#" class="menu-link" data-page="cautions">CAUTIONS</a>
-            <a href="#" class="menu-link" data-page="developer">DEVELOPER</a>
-            <div class="whatsapp-group-container">
-                <a href="https://chat.whatsapp.com/C93bc3e0Eqi0yVdJAkgxM9" class="whatsapp-group-btn" target="_blank">
-                    Join our WhatsApp Group
-                </a>
+            <div class="developer-info">
+                <h3>Developer Info</h3>
+                <p>Hi 👋 I'm a Zimbabwean Developer, Feel free to reach out to my Business WhatsApp for any Technical issues</p>
+                <div class="dev-buttons">
+                    <a href="https://wa.me/27642701608" class="dev-btn">Contact Developer</a>
+                    <a href="https://ko-fi.com/16ixtxxn" class="dev-btn">Buy me Coffee ☕️</a>
+                </div>
             </div>
         </div>
 
@@ -71,50 +75,53 @@
             <div id="home" class="page active">
                 <div class="hero-section">
                     <h1>Welcome to 69LPGGas</h1>
-                    <p>Your trusted partner for quality gas products and services</p>
+                    <p>Your trusted provider of quality gas products and accessories</p>
+                    <a href="https://chat.whatsapp.com/C93bc3e0Eqi0yVdJAkgxM9" class="whatsapp-group-btn">
+                        <i class="fab fa-whatsapp"></i> Join our WhatsApp Group
+                    </a>
                 </div>
                 
-                <div class="floating-whatsapp">
-                    <a href="https://wa.me/263780074647" target="_blank" class="whatsapp-float">
-                        <div class="whatsapp-icon">💬</div>
-                    </a>
+                <div class="features">
+                    <div class="feature-card">
+                        <i class="fas fa-truck"></i>
+                        <h3>Fast Delivery</h3>
+                        <p>Quick and reliable delivery to your doorstep</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Quality Products</h3>
+                        <p>Certified and tested gas products</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-tag"></i>
+                        <h3>Best Prices</h3>
+                        <p>Competitive pricing with regular promotions</p>
+                    </div>
                 </div>
             </div>
 
             <!-- Prices Page -->
             <div id="prices" class="page">
-                <h2>Our Current Prices</h2>
-                <div class="prices-container">
+                <h2 class="page-title">Our Prices</h2>
+                <div class="pricing-container">
                     <div class="price-card">
-                        <h3>Standard Price</h3>
-                        <p class="price">$1.7/kg or R35</p>
+                        <h3>Gas Refill</h3>
+                        <div class="price">$1.7/kg or R35</div>
+                        <p>High quality LPG gas refill</p>
                     </div>
                     
                     <div class="price-card promotion">
                         <div class="promo-label">🏷 Promotion</div>
                         <h3>Dira Rizare Promotion</h3>
-                        <p class="price">3kg for R105</p>
-                        <p class="price">5kg for $8.5 or R175</p>
-                        
-                        <div class="countdown-container">
-                            <h4>Offer ends in:</h4>
-                            <div id="countdown" class="countdown">
-                                <div class="time-segment">
-                                    <span id="days">10</span>
-                                    <span>Days</span>
-                                </div>
-                                <div class="time-segment">
-                                    <span id="hours">00</span>
-                                    <span>Hours</span>
-                                </div>
-                                <div class="time-segment">
-                                    <span id="minutes">00</span>
-                                    <span>Minutes</span>
-                                </div>
-                                <div class="time-segment">
-                                    <span id="seconds">00</span>
-                                    <span>Seconds</span>
-                                </div>
+                        <div class="price">3kg for R105 | 5kg for $8.5 or R175</div>
+                        <p>Special limited time offer</p>
+                        <div class="countdown">
+                            <div id="countdown-timer">
+                                <div><span id="days">10</span>Days</div>
+                                <div><span id="hours">00</span>Hours</div>
+                                <div><span id="minutes">00</span>Minutes</div>
+                                <div><span id="seconds">00</span>Seconds</div>
+                                <div><span id="milliseconds">000</span>MS</div>
                             </div>
                         </div>
                     </div>
@@ -123,7 +130,7 @@
 
             <!-- Products Page -->
             <div id="products" class="page">
-                <h2>Our Products</h2>
+                <h2 class="page-title">Our Products</h2>
                 <div id="products-container" class="products-grid">
                     <!-- Products will be loaded dynamically from JSON -->
                 </div>
@@ -131,66 +138,52 @@
 
             <!-- Cautions Page -->
             <div id="cautions" class="page">
-                <h2>Safety Information</h2>
+                <h2 class="page-title">Safety Instructions</h2>
                 <div class="cautions-container">
                     <div class="caution-card">
-                        <h3>⚠️ Important Safety Tips</h3>
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Storage Safety</h3>
                         <ul>
-                            <li>Always store gas cylinders in a well-ventilated area</li>
-                            <li>Check for leaks regularly using soapy water solution</li>
-                            <li>Keep cylinders away from heat sources and flammable materials</li>
-                            <li>Ensure all connections are tight before use</li>
-                            <li>Never use a damaged cylinder or equipment</li>
-                            <li>Turn off the gas at the cylinder when not in use</li>
-                            <li>In case of a leak, evacuate the area and call professionals</li>
+                            <li>Store gas cylinders in a well-ventilated area</li>
+                            <li>Keep away from heat sources and direct sunlight</li>
+                            <li>Store cylinders upright and secure them properly</li>
                         </ul>
                     </div>
-                    
                     <div class="caution-card">
-                        <h3>🚒 Emergency Procedures</h3>
+                        <i class="fas fa-fire-extinguisher"></i>
+                        <h3>Usage Precautions</h3>
                         <ul>
-                            <li>If you smell gas, extinguish all open flames</li>
-                            <li>Do not operate electrical switches</li>
-                            <li>Evacuate the area immediately</li>
-                            <li>Contact emergency services</li>
-                            <li>Ventilate the area by opening windows and doors</li>
+                            <li>Check for leaks regularly with soapy water</li>
+                            <li>Never use a gas appliance if you smell gas</li>
+                            <li>Ensure proper ventilation when using gas appliances</li>
                         </ul>
                     </div>
-                </div>
-            </div>
-
-            <!-- Developer Page -->
-            <div id="developer" class="page">
-                <h2>Developer Information</h2>
-                <div class="developer-container">
-                    <div class="developer-card">
-                        <h3>Hi 👋 I'm a Zimbabwean Developer</h3>
-                        <p>Feel free to reach out to my Business WhatsApp for any Technical issues and also if you would like me to start working on your project for you.</p>
-                        
-                        <div class="developer-contact">
-                            <a href="https://wa.me/27642701608" class="contact-btn" target="_blank">
-                                Contact on WhatsApp
-                            </a>
-                            <a href="https://ko-fi.com/16ixtxxn" class="coffee-btn" target="_blank">
-                                Buy me a Coffee ☕️
-                            </a>
-                        </div>
+                    <div class="caution-card">
+                        <i class="fas fa-house-damage"></i>
+                        <h3>Emergency Procedures</h3>
+                        <ul>
+                            <li>In case of leak, turn off supply and evacuate area</li>
+                            <li>Do not operate electrical switches if gas leak is suspected</li>
+                            <li>Keep a fire extinguisher accessible near gas appliances</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </main>
 
+        <!-- Floating WhatsApp Button -->
+        <a href="https://wa.me/263780074647" id="whatsapp-float" class="whatsapp-float">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+
         <!-- Footer -->
         <footer class="footer">
             <div class="footer-content">
-                <div class="contact-info">
-                    <p>
-                        <span class="email-icon">✉️</span>
-                        <a href="mailto:69LPGGas@gmail.com">69LPGGas@gmail.com</a>
-                    </p>
-                    <p>165 Shongamiti, Ngundu, Masvingo, Zimbabwe</p>
+                <div class="footer-contact">
+                    <p><i class="fas fa-envelope"></i> 69LPGGas@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 165 Shongamiti, Ngundu, Masvingo, Zimbabwe</p>
                 </div>
-                <div class="footer-rights">
+                <div class="footer-copyright">
                     <p>&copy; 2025 69LPGGas. All rights reserved.</p>
                 </div>
             </div>
@@ -199,4 +192,4 @@
 
     <script src="script.js"></script>
 </body>
-                            </html>
+                        </html>
